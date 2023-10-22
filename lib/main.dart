@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   void _incrementCounter() async {
     print('Start second Page');
     var ack = await router.push(
-        name: MCRouter.secondPage, arguments: 'Hello from mainPage');
+        name: MCRouter.playPage, arguments: 'Hello from mainPage');
     print('ack : $ack');
   }
 

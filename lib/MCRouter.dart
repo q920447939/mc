@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:mc/main.dart';
+import 'package:mc/player_page.dart';
 import 'package:mc/second_page.dart';
 
 class MCRouter extends RouterDelegate<List<RouteSettings>>
@@ -10,6 +11,7 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
   late Completer<Object?> _boolResultCompleter;
   static const String mainPage = "/main";
   static const String secondPage = "/second";
+  static const String playPage = "/play";
   static const String key = "key";
   static const String value = "value";
 
@@ -87,6 +89,9 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
         page = SecondPage(
           params: routeSettings.arguments?.toString() ?? '',
         );
+        break;
+      case playPage:
+        page = const PlayerPage();
         break;
       default:
         page = const Scaffold();
