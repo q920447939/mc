@@ -20,11 +20,12 @@ class _PlayerPageState extends State<PlayerPage> {
   void initState() {
     super.initState();
     player = Player();
-    player.setCommonDataSource(url, autoPlay: true);
+    player.setCommonDataSource("assets/video/big_buck_bunny_720p_1mb.mp4",
+        sourceType: SourceType.local, autoPlay: true);
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: VideoViewState(player));
+    return VideoViewState(player);
   }
 }

@@ -1,7 +1,7 @@
 import 'package:fijkplayer/fijkplayer.dart';
 
 class Player extends FijkPlayer {
-  static String asset_url_suffix = "asset:///";
+  static String asset_url_suffix = "assets:///";
 
   void setCommonDataSource(
     String url, {

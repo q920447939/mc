@@ -66,6 +66,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/images/player.png
+    - assets/video/big_buck_bunny_720p_1mb.mp4
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
 
