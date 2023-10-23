@@ -60,10 +60,11 @@ packages:
   fijkplayer:
     dependency: transitive
     description:
-      name: fijkplayer
-      sha256: "32e7c827c24f626e8d0a662212363d5a6387d89ec6138aca7d754ba87b09668f"
-      url: "https://pub.flutter-io.cn"
-    source: hosted
+      path: "."
+      ref: master
+      resolved-ref: fd1365eda24874f30e555de0311f9d8b03b530ba
+      url: "https://github.com/diegothucao/cfijkplayer.git"
+    source: git
     version: "0.10.1"
   flutter:
     dependency: "direct main"
@@ -213,5 +214,5 @@ packages:
     source: hosted
     version: "0.1.4-beta"
 sdks:
-  dart: ">=3.1.2 <4.0.0"
+  dart: ">=3.1.1 <4.0.0"
   flutter: ">=3.3.0"
