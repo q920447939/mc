@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:player/player.dart';
 import 'package:player/vedio_view.dart';
 
-import 'MCRouter.dart';
-import 'main.dart';
+import '../MCRouter.dart';
+import '../main.dart';
 
 class VideoListPage extends StatefulWidget {
   const VideoListPage({super.key});
@@ -13,9 +13,11 @@ class VideoListPage extends StatefulWidget {
 }
 
 class _VideoListPageState extends State<VideoListPage> {
+  var url =
+      "http://vd2.bdstatic.com/mda-pjmda4pa1evdzfb7/720p/h264/1697966790795865210/mda-pjmda4pa1evdzfb7.mp4?v_from_s=hkapp-haokan-hnb&auth_key=1697992517-0-0-faa80c647b78cd5adcf26d80e2a8edac&bcevod_channel=searchbox_feed&pd=1&cr=2&cd=0&pt=3&logid=2117830552&vid=1254042716516707199&klogid=2117830552&abtest=112751_4-112954_1-113704_1";
+
   @override
   Widget build(BuildContext context) {
-    var url = "assets/video/big_buck_bunny_720p_1mb.mp4";
     return Scaffold(
       body: GridView.builder(
           gridDelegate:
@@ -31,7 +33,7 @@ class _VideoListPageState extends State<VideoListPage> {
                 child: VideoViewState(new Player()
                   ..setCommonDataSource(
                     url,
-                    sourceType: SourceType.local,
+                    sourceType: SourceType.net,
                     autoPlay: false,
                   )),
               ),

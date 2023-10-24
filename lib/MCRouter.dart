@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mc/main.dart';
 import 'package:mc/player_page.dart';
 import 'package:mc/second_page.dart';
-import 'package:mc/video_list_page.dart';
+import 'package:mc/vedio_page/video_list_page.dart';
 
 class MCRouter extends RouterDelegate<List<RouteSettings>>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<List<RouteSettings>> {
