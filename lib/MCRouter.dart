@@ -93,7 +93,9 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
         );
         break;
       case playPage:
-        page = const PlayerPage();
+        var url = page = PlayerPage(
+          url: routeSettings.arguments?.toString() ?? '',
+        );
         break;
       case videoListPage:
         page = const VideoListPage();
