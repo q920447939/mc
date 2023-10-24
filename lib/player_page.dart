@@ -20,7 +20,7 @@ class _PlayerPageState extends State<PlayerPage> {
   void initState() {
     super.initState();
     player = Player();
-    player.setCommonDataSource("assets/video/big_buck_bunny_720p_1mb.mp4",
+    player.setCommonDataSource(url,
         sourceType: SourceType.local, autoPlay: true);
   }
 
