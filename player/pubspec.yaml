@@ -17,6 +17,8 @@ dependencies:
     git:
       url: https://github.com/diegothucao/cfijkplayer.git
       ref: master
+  path_provider: ^2.1.1 #路径解析
+
 
 dev_dependencies:
   flutter_test:

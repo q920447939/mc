@@ -52,6 +52,7 @@ dev_dependencies:
   path_provider: ^2.1.1 #路径解析
   json_serializable: ^6.7.1 #json序列化成对象
   build_runner: ^2.4.6
+  shared_preferences: ^2.1.1  #本地缓存
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

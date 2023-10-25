@@ -14,18 +14,18 @@ class VideoListPage extends StatefulWidget {
 }
 
 class _VideoListPageState extends State<VideoListPage> {
-  var url =
-      "http://vd2.bdstatic.com/mda-pjmda4pa1evdzfb7/720p/h264/1697966790795865210/mda-pjmda4pa1evdzfb7.mp4?v_from_s=hkapp-haokan-hnb&auth_key=1697992517-0-0-faa80c647b78cd5adcf26d80e2a8edac&bcevod_channel=searchbox_feed&pd=1&cr=2&cd=0&pt=3&logid=2117830552&vid=1254042716516707199&klogid=2117830552&abtest=112751_4-112954_1-113704_1";
-
   late VideoController videoController;
 
   @override
   void initState() {
+    super.initState();
     videoController = VideoController();
-    videoController.init();
-    print("videoController.tile =>${videoController.model.title}");
-    print("videoController.url =>${videoController.model.url}");
-    print("videoController.playCount =>${videoController.model.count}");
+    videoController.init().then((value) {
+      setState(() {});
+    });
+    print("videoController.tile =>${videoController.model?.title}");
+    print("videoController.url =>${videoController.model?.url}");
+    print("videoController.playCount =>${videoController.model?.count}");
   }
 
   @override
@@ -40,17 +40,19 @@ class _VideoListPageState extends State<VideoListPage> {
               onTap: () async {
                 await router.push(
                     name: MCRouter.playPage,
-                    arguments: videoController.model.url);
+                    arguments: videoController.model?.url);
               },
-              child: AbsorbPointer(
-                absorbing: true,
-                child: VideoViewState(new Player()
-                  ..setCommonDataSource(
-                    videoController.model.url,
-                    sourceType: SourceType.net,
-                    autoPlay: false,
-                  )),
-              ),
+              child: videoController.model == null
+                  ? Container()
+                  : AbsorbPointer(
+                      absorbing: true,
+                      child: VideoViewState(new Player()
+                        ..setCommonDataSource(
+                          videoController.model?.url ?? '',
+                          sourceType: SourceType.net,
+                          autoPlay: false,
+                        )),
+                    ),
             );
           }),
     );

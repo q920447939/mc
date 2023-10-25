@@ -45,4 +45,10 @@ class _VideoViewStateState extends State<VideoViewState> {
     }
     setState(() {});
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    widget.player.release();
+  }
 }
