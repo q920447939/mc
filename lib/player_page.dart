@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:mc/vedio_page/video_controller.dart';
+import 'package:mc/progress/progress.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:player/player.dart';
 import 'package:player/vedio_view.dart';
-import 'package:path_provider/path_provider.dart';
-import 'package:dio/dio.dart';
 
 class PlayerPage extends StatefulWidget {
   final String url;
@@ -16,16 +15,13 @@ class PlayerPage extends StatefulWidget {
 }
 
 class _PlayerPageState extends State<PlayerPage> {
-  late VideoController videoController;
+  late ProgressDialog pr;
+
+  bool showDialogFlag = false;
 
   @override
   void initState() {
     super.initState();
-    videoController = VideoController();
-    videoController.init();
-    print("videoController.tile =>${videoController.model.title}");
-    print("videoController.url =>${videoController.model.url}");
-    print("videoController.playCount =>${videoController.model.count}");
   }
 
   @override
@@ -61,17 +57,21 @@ class _PlayerPageState extends State<PlayerPage> {
     );
   }
 
-  void _saveVideo(String url) async {
+  void _saveVideo(String url) {
     Uri uri = Uri.parse(url);
     String fileName = uri.pathSegments.last;
     //保存视频
-    var path = await getApplicationSupportDirectory();
-    print('获取到的下载路径:${path}');
-    final dio = Dio();
-    dio.download(url, '${path.path}/${fileName}',
-        onReceiveProgress: (int count, int total) {
-      int process = (count / total * 100).toInt();
-      print('下载进度:' + process.toString());
+    getApplicationSupportDirectory().then((path) {
+      print('获取到的下载路径:$path');
+      final dio = Dio();
+      pr = ProgressDialog(context);
+      dio.download(url, '${path.path}/$fileName',
+          onReceiveProgress: (int count, int total) {
+        pr.value = count / total;
+        print('下載进度:${pr.value}');
+      }).whenComplete(
+        () {},
+      );
     });
   }
 }

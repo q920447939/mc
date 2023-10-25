@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:mc/main.dart';
 import 'package:mc/player_page.dart';
 import 'package:mc/second_page.dart';
+import 'package:mc/third_page.dart';
 import 'package:mc/vedio_page/video_list_page.dart';
 
 class MCRouter extends RouterDelegate<List<RouteSettings>>
@@ -13,6 +14,7 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
   static const String mainPage = "/main";
   static const String secondPage = "/second";
   static const String playPage = "/play";
+  static const String thirdPage = "/thirdPage";
   static const String videoListPage = "/videoList";
   static const String key = "key";
   static const String value = "value";
@@ -96,6 +98,9 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
         var url = page = PlayerPage(
           url: routeSettings.arguments?.toString() ?? '',
         );
+        break;
+      case thirdPage:
+        page = ThirdPage();
         break;
       case videoListPage:
         page = const VideoListPage();
