@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:mc/favorite_animation_icon.dart';
 
 class FavoriteGesture extends StatefulWidget {
   final Widget child;
@@ -14,9 +15,9 @@ class FavoriteGesture extends StatefulWidget {
 }
 
 class _FavoriteGestureState extends State<FavoriteGesture> {
-  bool inFavorite = false;
   Offset tmpOffSet = Offset.zero;
   final GlobalKey _gk = GlobalKey();
+  List<Offset> offsets = [];
 
   //通过全局的key 找到  GestureDetector 对象 所在屏幕的位置 （如果用绝对定位的话，可能 后面的position 就不在 GestureDetector 元素里面）
   Offset _globalToRelationOffset(Offset globalOffset) {
@@ -26,6 +27,18 @@ class _FavoriteGestureState extends State<FavoriteGesture> {
 
   @override
   Widget build(BuildContext context) {
+    var iconStack = Stack(
+      children: offsets
+          .map((e) => FavoriteAnimationIcon(
+                key: GlobalKey(),
+                size: widget.size,
+                animationComplete: () {
+                  offsets.remove(e);
+                },
+                position: e,
+              ))
+          .toList(),
+    );
     return GestureDetector(
       key: _gk,
       onDoubleTapDown: (details) {
@@ -34,20 +47,14 @@ class _FavoriteGestureState extends State<FavoriteGesture> {
       },
       onDoubleTap: () {
         setState(() {
-          inFavorite = true;
-        });
-        Future.delayed(Duration(milliseconds: 300), () {
-          setState(() {
-            inFavorite = false;
-          });
+          offsets.add(tmpOffSet);
         });
       },
       child: Stack(
         children: [
           widget.child,
-          if (inFavorite)
-            Positioned(
-                /**
+          Positioned(
+              /**
                * 因为默认是按照点击的坐标点进行绘制的，我们需要的是 爱心点 在点击的坐标点的上下左右的偏移 ，
                * 看下面的例子
                * 如果不减去一半的宽度 和高度，那么结果是这样的
@@ -63,13 +70,8 @@ class _FavoriteGestureState extends State<FavoriteGesture> {
                *            ..mount..
                *            .........
                */
-                top: tmpOffSet.dy - widget.size / 2,
-                left: tmpOffSet.dx - widget.size / 2,
-                child: Icon(
-                  Icons.favorite,
-                  color: Colors.red,
-                  size: widget.size,
-                )),
+
+              child: iconStack),
         ],
       ),
     );
