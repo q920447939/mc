@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:mc/favorite_gesture.dart';
 import 'package:mc/progress/progress.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:player/player.dart';
@@ -26,34 +27,36 @@ class _PlayerPageState extends State<PlayerPage> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onLongPress: () {
-        //长按出现对话框
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text('提示'),
-                content: Text('确定要下载本视频吗?'),
-                actions: [
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pop(context);
-                      },
-                      child: Text('取消')),
-                  TextButton(
-                      onPressed: () {
-                        _saveVideo(widget.url);
-                        Navigator.pop(context);
-                      },
-                      child: Text('确定'))
-                ],
-              );
-            });
-      },
-      child: VideoViewState(Player()
-        ..setCommonDataSource(widget.url,
-            sourceType: SourceType.net, autoPlay: true)),
+    return FavoriteGesture(
+      child: GestureDetector(
+        onLongPress: () {
+          //长按出现对话框
+          showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: Text('提示'),
+                  content: Text('确定要下载本视频吗?'),
+                  actions: [
+                    TextButton(
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
+                        child: Text('取消')),
+                    TextButton(
+                        onPressed: () {
+                          _saveVideo(widget.url);
+                          Navigator.pop(context);
+                        },
+                        child: Text('确定'))
+                  ],
+                );
+              });
+        },
+        child: VideoViewState(Player()
+          ..setCommonDataSource(widget.url,
+              sourceType: SourceType.net, autoPlay: true)),
+      ),
     );
   }
 

@@ -8,7 +8,7 @@ class Player extends FijkPlayer {
   bool cacheEnable = true;
 
   static String cachePath = '';
-  String cache_key_prefix = 'ijkio::cache::ffio:';
+  String cache_key_prefix = 'ijkio:cache:ffio:';
 
   static void setCachePath(String cachePathTmp) {
     cachePath = cachePathTmp;

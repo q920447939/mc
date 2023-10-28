@@ -6,21 +6,21 @@ import 'package:mc/vedio_page/video_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class VideoController {
-  VideModel? model;
+  List<VideModel>? dataList;
 
   Future<void> init() async {
-    if (null == model) {
-      model = await fetchData();
+    if (null == dataList) {
+      dataList = await fetchData();
     }
   }
 
-  Future<VideModel> fetchData() async {
-    var sp = await SharedPreferences.getInstance();
+  Future<List<VideModel>> fetchData() async {
+/*    var sp = await SharedPreferences.getInstance();
     if (sp.containsKey('vedio_list')) {
       return VideModel.fromJson(jsonDecode(sp.getString('vedio_list')!));
-    }
-    var json = ServerData.fetchData();
-    sp.setString("vedio_list", json);
-    return VideModel.fromJson(jsonDecode(json));
+    }*/
+    // 去掉缓存了
+    var list = jsonDecode(ServerData.fetchData()) as List<dynamic>;
+    return list.map((json) => VideModel.fromJson(json)).toList();
   }
 }

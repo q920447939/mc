@@ -23,34 +23,34 @@ class _VideoListPageState extends State<VideoListPage> {
     videoController.init().then((value) {
       setState(() {});
     });
-    print("videoController.tile =>${videoController.model?.title}");
+    /* print("videoController.tile =>${videoController.model?.title}");
     print("videoController.url =>${videoController.model?.url}");
-    print("videoController.playCount =>${videoController.model?.count}");
+    print("videoController.playCount =>${videoController.model?.count}");*/
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: GridView.builder(
-          gridDelegate:
-              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-          itemCount: 3,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2),
+          itemCount: videoController.dataList?.length,
           itemBuilder: (BuildContext context, int index) {
             return GestureDetector(
               onTap: () async {
                 await router.push(
                     name: MCRouter.playPage,
-                    arguments: videoController.model?.url);
+                    arguments: videoController.dataList![index].url);
               },
-              child: videoController.model == null
+              child: videoController.dataList == null
                   ? Container()
                   : AbsorbPointer(
                       absorbing: true,
-                      child: VideoViewState(new Player()
+                      child: VideoViewState(Player()
                         ..setCommonDataSource(
-                          videoController.model?.url ?? '',
+                          videoController.dataList![index].url,
                           sourceType: SourceType.net,
-                          autoPlay: false,
+                          autoPlay: true,
                         )),
                     ),
             );

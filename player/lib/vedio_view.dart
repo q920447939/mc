@@ -6,7 +6,7 @@ import 'package:player/player.dart';
 class VideoViewState extends StatefulWidget {
   Player player;
 
-  VideoViewState(this.player);
+  VideoViewState(this.player, {super.key});
 
   @override
   State<VideoViewState> createState() => _VideoViewStateState();
