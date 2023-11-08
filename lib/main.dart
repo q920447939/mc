@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mc/MCRouter.dart';
-import 'package:mc/player_page.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:player/player.dart';
 
@@ -51,6 +50,11 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
+  final PageController _pageController = PageController(initialPage: 0);
+  final _defaultColor = Colors.grey;
+  final _activeColor = Colors.blueAccent;
+  int _currentIndex = 0;
+
   void _incrementCounter() async {
     print('Start second Page');
     var ack = await router.push(
@@ -61,31 +65,48 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text(widget.title),
+      body: PageView(
+        physics: NeverScrollableScrollPhysics(),
+        controller: _pageController,
+        children: [
+          //MinePage(),
+        ],
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+          router.replace(name: MCRouter.miniPage);
+        },
+        type: BottomNavigationBarType.fixed,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+              color: _defaultColor,
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            activeIcon: Icon(
+              Icons.home,
+              color: _activeColor,
             ),
-          ],
-        ),
+            label: '首页',
+            tooltip: '首页',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.search,
+              color: _defaultColor,
+            ),
+            activeIcon: Icon(
+              Icons.search,
+              color: _activeColor,
+            ),
+            label: '搜索',
+          ),
+        ],
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
+    ); // This trailing comma makes auto-formatting nicer for build methods.
   }
 }

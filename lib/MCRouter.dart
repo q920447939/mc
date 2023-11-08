@@ -2,10 +2,13 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:mc/main.dart';
+import 'package:mc/photo_picker.dart';
 import 'package:mc/player_page.dart';
 import 'package:mc/second_page.dart';
 import 'package:mc/third_page.dart';
 import 'package:mc/vedio_page/video_list_page.dart';
+
+import 'mini_page.dart';
 
 class MCRouter extends RouterDelegate<List<RouteSettings>>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<List<RouteSettings>> {
@@ -16,6 +19,8 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
   static const String playPage = "/play";
   static const String thirdPage = "/thirdPage";
   static const String videoListPage = "/videoList";
+  static const String miniPage = "/miniPage";
+  static const String photoPickerPage = "/PhotoPicker";
   static const String key = "key";
   static const String value = "value";
 
@@ -104,6 +109,12 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
         break;
       case videoListPage:
         page = const VideoListPage();
+        break;
+      case miniPage:
+        page = const MinePage();
+        break;
+      case photoPickerPage:
+        page = PhotoPicker();
         break;
       default:
         page = const Scaffold();

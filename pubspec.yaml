@@ -53,6 +53,8 @@ dev_dependencies:
   json_serializable: ^6.7.1 #json序列化成对象
   build_runner: ^2.4.6
   shared_preferences: ^2.1.1  #本地缓存
+  flutter_gen_runner: ^5.3.2  #asset目录下的内容，使用类常量去访问  ，如果加入了新的图片，需要在终端输入命令  dart run build_runner build
+  image_picker: ^1.0.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -71,6 +73,7 @@ flutter:
   #   - images/a_dot_ham.jpeg
   assets:
     - assets/images/player.png
+    - assets/images/default_background.jpg
     - assets/video/big_buck_bunny_720p_1mb.mp4
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
