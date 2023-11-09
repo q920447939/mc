@@ -8,7 +8,8 @@ class TImage extends StatefulWidget {
   double? height;
   final fit;
 
-  TImage({super.key, required this.url, this.fit = BoxFit.cover});
+  TImage(this.url,
+      {super.key, this.fit = BoxFit.cover, this.width, this.height});
 
   @override
   State<TImage> createState() => _TImageState();

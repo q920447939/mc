@@ -4,7 +4,9 @@ import 'package:mc/gen/assets.gen.dart';
 import 'package:mc/photo_picker.dart';
 import 'package:mc/widget/TImage.dart';
 
+import 'MCRouter.dart';
 import 'image_from_gallery_ex.dart';
+import 'main.dart';
 
 class MinePage extends StatefulWidget {
   const MinePage({super.key});
@@ -15,43 +17,8 @@ class MinePage extends StatefulWidget {
 
 class _MinePageState extends State<MinePage> {
   static const image_height = 138.5;
-
-  // This shows a CupertinoModalPopup which hosts a CupertinoActionSheet.
-  void _showActionSheet(BuildContext context) {
-    print("22222");
-    showCupertinoModalPopup<void>(
-      context: context,
-      builder: (BuildContext context) => CupertinoActionSheet(
-        title: const Text('从相册选择照片或拍摄一张照片'),
-        //message: const Text('Message'),
-        actions: <CupertinoActionSheetAction>[
-          CupertinoActionSheetAction(
-            /// This parameter indicates the action would be a default
-            /// default behavior, turns the action's text to bold text.
-            //isDefaultAction: true,
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          ImageFromGalleryEx(ImageSourceType.gallery)));
-            },
-            child: const Text('从相册选择'),
-          ),
-          CupertinoActionSheetAction(
-            onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) =>
-                          ImageFromGalleryEx(ImageSourceType.camera)));
-            },
-            child: const Text('拍一张照片'),
-          ),
-        ],
-      ),
-    );
-  }
+  //头像
+  String avatarPath = Assets.images.defaultBackground.path;
 
   @override
   Widget build(BuildContext context) {
@@ -59,18 +26,21 @@ class _MinePageState extends State<MinePage> {
       body: Stack(
         children: [
           GestureDetector(
-            onTap: () {
-              /* router.push(
-                  name: MCRouter.photoPickerPage,
-                  arguments: ImageSourceType.gallery);*/
-              onPressed:
-              _showActionSheet(context);
+            onTap: () async {
+              var path = await router.push(
+                  name: MCRouter.photoPickerPage, arguments: avatarPath);
+              print("mounted is ${mounted}");
+              if (path != null && path is String && mounted) {
+                print("path is ${path}");
+                avatarPath = path.toString();
+                setState(() {});
+              }
             },
             child: Container(
               width: double.infinity,
               height: image_height,
               child: TImage(
-                url: Assets.images.defaultBackground.path,
+                avatarPath,
                 fit: BoxFit.cover,
               ),
             ),

@@ -114,7 +114,7 @@ class MCRouter extends RouterDelegate<List<RouteSettings>>
         page = const MinePage();
         break;
       case photoPickerPage:
-        page = PhotoPicker();
+        page = PhotoPicker(routeSettings.arguments?.toString() ?? '');
         break;
       default:
         page = const Scaffold();
