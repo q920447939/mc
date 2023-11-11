@@ -8,7 +8,7 @@ import 'package:mc/second_page.dart';
 import 'package:mc/third_page.dart';
 import 'package:mc/vedio_page/video_list_page.dart';
 
-import 'mini_page.dart';
+import 'page/mine_page/mine_page.dart';
 
 class MCRouter extends RouterDelegate<List<RouteSettings>>
     with ChangeNotifier, PopNavigatorRouterDelegateMixin<List<RouteSettings>> {

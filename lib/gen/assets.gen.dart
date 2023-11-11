@@ -12,6 +12,10 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/default_avator.png
+  AssetGenImage get defaultAvator =>
+      const AssetGenImage('assets/images/default_avator.png');
+
   /// File path: assets/images/default_background.jpg
   AssetGenImage get defaultBackground =>
       const AssetGenImage('assets/images/default_background.jpg');
@@ -19,8 +23,13 @@ class $AssetsImagesGen {
   /// File path: assets/images/player.png
   AssetGenImage get player => const AssetGenImage('assets/images/player.png');
 
+  /// File path: assets/images/triangle_down.png
+  AssetGenImage get triangleDown =>
+      const AssetGenImage('assets/images/triangle_down.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [defaultBackground, player];
+  List<AssetGenImage> get values =>
+      [defaultAvator, defaultBackground, player, triangleDown];
 }
 
 class $AssetsVideoGen {

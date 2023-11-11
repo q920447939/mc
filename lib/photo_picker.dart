@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mc/main.dart';
-import 'package:mc/widget/TImage.dart';
+import 'package:mc/widget/t_image.dart';
 import 'package:image_picker/image_picker.dart';
 
 enum ImageSourceType { gallery, camera }

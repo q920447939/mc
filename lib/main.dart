@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mc/MCRouter.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:player/player.dart';
+import 'package:get/get.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
@@ -96,14 +97,14 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              Icons.search,
+              Icons.person,
               color: _defaultColor,
             ),
             activeIcon: Icon(
-              Icons.search,
+              Icons.person,
               color: _activeColor,
             ),
-            label: '搜索',
+            label: '个人中心',
           ),
         ],
       ),
